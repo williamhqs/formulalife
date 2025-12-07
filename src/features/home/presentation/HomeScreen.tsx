@@ -44,7 +44,7 @@ const SUBJECTS: Subject[] = [
 
 export default function HomeScreen({ navigation }: any) {
   const handlePress = (subjectId: string) => {
-    navigation.navigate('Formula', { id: subjectId });
+    navigation.navigate('Detail', { id: subjectId });
   };
 
   const renderSubject = ({ item }: { item: Subject }) => (

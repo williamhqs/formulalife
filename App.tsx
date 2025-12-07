@@ -1,18 +1,13 @@
-import { ScreenContent } from 'components/ScreenContent';
 import { StatusBar } from 'expo-status-bar';
 
 import './global.css';
 import { NavigationContainer } from '@react-navigation/native';
-import FormulaScreen from 'features/home/presentation/FormulaScreen';
-import Speed from 'features/Speed';
-import HomeScreen from 'features/home/presentation/HomeScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import HomeStack from '@/navigation/HomeStack';
 
-const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function PracticeScreen() {
@@ -21,15 +16,6 @@ function PracticeScreen() {
 
 function ProfileScreen() {
   return <Text style={{ flex: 1, textAlign: 'center', marginTop: 50 }}>Profile Screen</Text>;
-}
-
-function HomeStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="HomeMain" component={HomeScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Formula" component={FormulaScreen} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
 }
 
 export default function App() {
@@ -45,7 +31,7 @@ export default function App() {
             tabBarInactiveTintColor: '#777',
           }}>
           <Tab.Screen
-            name="Home"
+            name="HomeTab"
             component={HomeStack}
             options={{
               tabBarIcon: ({ color, size }) => (

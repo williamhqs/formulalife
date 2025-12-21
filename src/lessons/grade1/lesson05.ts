@@ -1,5 +1,5 @@
 // lessons/grade1/lesson05.ts
-import { AddRule } from '../../engine';
+import { AddRule } from '../../engine/rules/AddRule';
 
 export const lesson05 = {
   id: 'g1-l05',

@@ -7,6 +7,9 @@ import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react
 import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HomeStack from '@/navigation/HomeStack';
+import LessonScreen from '@/screens/LessonScreen';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +23,7 @@ function ProfileScreen() {
 
 export default function App() {
   return (
-    <>
+    <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
@@ -42,7 +45,7 @@ export default function App() {
           />
           <Tab.Screen
             name="Practice"
-            component={PracticeScreen}
+            component={LessonScreen}
             options={{
               tabBarLabel: 'Practice',
               tabBarIcon: ({ color, size }) => (
@@ -62,6 +65,6 @@ export default function App() {
           />
         </Tab.Navigator>
       </NavigationContainer>
-    </>
+    </SafeAreaProvider>
   );
 }

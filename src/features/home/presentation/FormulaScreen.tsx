@@ -8,6 +8,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { useHeaderHeight } from '@react-navigation/elements';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Detail'>;
 
@@ -19,11 +20,26 @@ export default function FormulaScreen({ route }: Props) {
   const screenWidth = Dimensions.get('window').width - 40;
   console.log('Formula ID:', formula);
   const g = 9.8;
-  const [v0, setV0] = useState(10); // Initial velocity
-  const [t, setT] = useState(1); // Time slider
+  const [v01, setV0] = useState(10); // Initial velocity
+  const [t1, setT] = useState(1); // Time slider
   const insets = useSafeAreaInsets();
 
-  const y = v0 * t - 0.5 * g * t * t;
+  const y = v01 * 1 - 0.5 * g * t1 * t1;
+  const v0 = 20;
+
+  const t = useSharedValue(0);
+
+  const ballStyle = useAnimatedStyle(() => {
+    const y = v0 * t.value - 0.5 * g * t.value * t.value;
+    console.log('Animated y:', y);
+    return {
+      transform: [
+        { translateY: -y * 5 }, // scale for pixels
+        { translateX: t.value * 10 }, // optional horizontal motion
+      ],
+    };
+  });
+
   if (!formula)
     return (
       <SafeAreaView className="flex-1 bg-gray-50">
@@ -36,10 +52,36 @@ export default function FormulaScreen({ route }: Props) {
   return (
     <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
       {/* Header */}
+
       <Text style={styles.header}>Projectile Motion</Text>
 
-      {/* Formula Card */}
-      <View style={styles.card}>
+      <Slider
+        minimumValue={0}
+        maximumValue={5}
+        value={0}
+        onValueChange={(value) => {
+          t.value = value;
+        }}
+      />
+
+      <View
+        style={{ height: 300, paddingBottom: 20, backgroundColor: '#ffffff', overflow: 'visible' }}>
+        <Animated.View
+          style={[
+            {
+              width: 30,
+              height: 30,
+              borderRadius: 15,
+              backgroundColor: 'red',
+              position: 'absolute',
+              bottom: 0,
+            },
+            ballStyle,
+          ]}
+        />
+      </View>
+
+      {/* <View style={styles.card}>
         <Text style={styles.formula}>y = v₀·t - ½·g·t²</Text>
         <Text style={styles.formulaDescription}>
           This formula calculates the vertical height of a projectile at time t.
@@ -47,9 +89,9 @@ export default function FormulaScreen({ route }: Props) {
         <Text style={styles.description}>
           v₀ = initial upward velocity{'\n'}g = gravity (9.8 m/s²){'\n'}t = time{'\n'}y = height
         </Text>
-      </View>
+      </View> */}
 
-      {/* Variable Cards */}
+      {/*       
       <View style={styles.card}>
         <Text style={styles.variable}>v₀</Text>
         <Text style={styles.variableDescription}>Initial upward velocity (m/s)</Text>
@@ -68,11 +110,11 @@ export default function FormulaScreen({ route }: Props) {
       <View style={styles.card}>
         <Text style={styles.variable}>t</Text>
         <Text style={styles.variableDescription}>Time elapsed (s)</Text>
-        <Text style={styles.value}>Current: {t.toFixed(2)} s</Text>
+        <Text style={styles.value}>Current: {t1.toFixed(2)} s</Text>
         <Slider
           minimumValue={0}
           maximumValue={5}
-          value={t}
+          value={t1}
           onValueChange={setT}
           minimumTrackTintColor="#4f46e5"
           maximumTrackTintColor="#ddd"
@@ -80,11 +122,11 @@ export default function FormulaScreen({ route }: Props) {
         />
       </View>
 
-      {/* Result */}
+      
       <View style={[styles.card, { backgroundColor: '#e0f7fa' }]}>
         <Text style={styles.resultLabel}>Height (y)</Text>
         <Text style={styles.resultValue}>{y.toFixed(2)} m</Text>
-      </View>
+      </View> */}
     </ScrollView>
   );
 }

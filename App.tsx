@@ -8,7 +8,6 @@ import React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HomeStack from '@/navigation/HomeStack';
 import LessonScreen from '@/screens/LessonScreen';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();

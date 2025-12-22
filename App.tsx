@@ -9,6 +9,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import HomeStack from '@/navigation/HomeStack';
 import LessonScreen from '@/screens/LessonScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import HomeScreen from '@/screens/HomeScreen1';
+import BottomTabNavigator from '@/components/BottomTabNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +26,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
+        <BottomTabNavigator />
+      </NavigationContainer>
+      {/* <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
@@ -32,6 +37,16 @@ export default function App() {
             tabBarActiveTintColor: '#3498db',
             tabBarInactiveTintColor: '#777',
           }}>
+          <Tab.Screen
+            name="HomeTab1"
+            component={HomeScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons name="home" color={color} size={size} />
+              ),
+              tabBarLabel: 'Home',
+            }}
+          />
           <Tab.Screen
             name="HomeTab"
             component={HomeStack}
@@ -63,7 +78,7 @@ export default function App() {
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
+      </NavigationContainer> */}
     </SafeAreaProvider>
   );
 }

@@ -5,7 +5,7 @@ import { lesson05 } from '../lessons/grade1/lesson05';
 import { FormulaEngine } from '../engine/core/Engine';
 import { MathState } from '../engine/core/MathState';
 import { Action } from '../engine/core/Action';
-import { Ball } from '@/components/Ball';
+import { Ball } from '@/components/Ball'; // 确保 Ball 组件已存在
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -80,7 +80,7 @@ function LessonScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>{lesson05.title}</Text>
+      <Text style={styles.title}>加在一起</Text>
 
       <View style={styles.ballContainer}>{renderBalls()}</View>
 

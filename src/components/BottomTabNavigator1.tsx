@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text } from 'react-native';
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
+import GradeSubjectScreen from '@/screens/GradeSubjectScreen';
 // import ProfileScreen from './ProfileScreen';
 // import SettingsScreen from './SettingsScreen';
 
@@ -40,7 +41,7 @@ export default function BottomTabNavigator() {
 
       <Tab.Screen
         name="Profile"
-        component={HomeScreen}
+        component={GradeSubjectScreen}
         options={{
           tabBarLabel: '我的',
           tabBarIcon: ({ color, size }) => (

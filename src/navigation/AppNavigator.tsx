@@ -1,15 +1,16 @@
+// AppNavigator.tsx
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text } from 'react-native';
-import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
-import HomeScreen from '../screens/HomeScreen';
-import GradeSubjectScreen from '@/screens/GradeSubjectScreen';
-// import ProfileScreen from './ProfileScreen';
-// import SettingsScreen from './SettingsScreen';
+import HomeScreen from '@/screens/HomeScreen';
+import LessonScreen from '@/screens/LessonScreen';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTabNavigator() {
+export default function AppNavigator() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -32,7 +33,7 @@ export default function BottomTabNavigator() {
       }}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           tabBarLabel: '首页',
           tabBarIcon: ({ color, size }) => <FontAwesome5 name="home" color={color} size={size} />,
@@ -41,7 +42,7 @@ export default function BottomTabNavigator() {
 
       <Tab.Screen
         name="Profile"
-        component={GradeSubjectScreen}
+        component={HomeScreen} // 可以改为 ProfileScreen
         options={{
           tabBarLabel: '我的',
           tabBarIcon: ({ color, size }) => (
@@ -52,7 +53,7 @@ export default function BottomTabNavigator() {
 
       <Tab.Screen
         name="Settings"
-        component={HomeScreen}
+        component={HomeScreen} // 可以改为 SettingsScreen
         options={{
           tabBarLabel: '设置',
           tabBarIcon: ({ color, size }) => (

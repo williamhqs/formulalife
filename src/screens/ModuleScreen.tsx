@@ -31,13 +31,7 @@ export default function ModuleScreen() {
         renderItem={({ item, index }) => (
           <TouchableOpacity
             style={styles.lessonCard}
-            onPress={() =>
-              //   navigation.navigate('LessonScreen', {
-              //     lessonId: item.id,
-              //   })
-              //   navigation.navigate('LessonScreen', {})
-              {}
-            }>
+            onPress={() => navigation.navigate('LessonScreen')}>
             <View style={styles.lessonIndex}>
               <Text style={styles.lessonIndexText}>{index + 1}</Text>
             </View>

@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
@@ -30,67 +23,41 @@ const subjectsByGrade: Record<string, any[]> = {
       name: '数学',
       icon: 'calculator',
       modules: [
-        { id: 'm1', title: '数与运算', lessons: 4 },
-        { id: 'm2', title: '比较与关系', lessons: 3 },
+        {
+          id: 'm1',
+          title: '数与运算',
+          lessons: [
+            { id: 'm1-l1', title: '认识数字' },
+            { id: 'm1-l2', title: '数的顺序与大小' },
+            { id: 'm1-l3', title: '加法基础' },
+            { id: 'm1-l4', title: '减法基础' },
+          ],
+        },
+        {
+          id: 'm2',
+          title: '比较与关系',
+          lessons: [
+            { id: 'm2-l1', title: '比较长度和重量' },
+            { id: 'm2-l2', title: '认识多与少' },
+            { id: 'm2-l3', title: '理解等于与不等于' },
+          ],
+        },
       ],
     },
     {
       id: 'physics',
       name: '物理',
       icon: 'atom',
-      modules: [{ id: 'm3', title: '力与运动', lessons: 2 }],
-    },
-  ],
-  g2: [
-    {
-      id: 'math',
-      name: '数学',
-      icon: 'calculator',
       modules: [
-        { id: 'm1', title: '乘除法', lessons: 5 },
-        { id: 'm2', title: '几何基础', lessons: 3 },
+        {
+          id: 'm3',
+          title: '力与运动',
+          lessons: [
+            { id: 'm3-l1', title: '简单的推拉' },
+            { id: 'm3-l2', title: '物体的运动状态' },
+          ],
+        },
       ],
-    },
-    {
-      id: 'physics',
-      name: '物理',
-      icon: 'atom',
-      modules: [{ id: 'm3', title: '简单机械', lessons: 3 }],
-    },
-  ],
-  g3: [
-    {
-      id: 'math',
-      name: '数学',
-      icon: 'calculator',
-      modules: [
-        { id: 'm1', title: '分数', lessons: 4 },
-        { id: 'm2', title: '图形', lessons: 3 },
-      ],
-    },
-  ],
-  g4: [
-    {
-      id: 'math',
-      name: '数学',
-      icon: 'calculator',
-      modules: [{ id: 'm1', title: '小数与分数', lessons: 4 }],
-    },
-  ],
-  g5: [
-    {
-      id: 'math',
-      name: '数学',
-      icon: 'calculator',
-      modules: [{ id: 'm1', title: '代数', lessons: 5 }],
-    },
-  ],
-  g6: [
-    {
-      id: 'math',
-      name: '数学',
-      icon: 'calculator',
-      modules: [{ id: 'm1', title: '几何与代数', lessons: 5 }],
     },
   ],
 };
@@ -126,7 +93,7 @@ export default function HomeScreen({ navigation }: any) {
             style={styles.moduleCard}
             onPress={() => navigation.navigate('ModuleScreen', { module: mod })}>
             <Text style={styles.moduleTitle}>{mod.title}</Text>
-            <Text style={styles.moduleCount}>{mod.lessons} 课</Text>
+            <Text style={styles.moduleCount}>{mod.lessons.length} </Text>
           </TouchableOpacity>
         ))}
       </View>

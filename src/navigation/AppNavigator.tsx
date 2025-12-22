@@ -5,7 +5,6 @@ import HomeScreen from '@/screens/HomeScreen';
 import LessonScreen from '@/screens/LessonScreen';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
 import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();

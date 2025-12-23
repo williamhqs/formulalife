@@ -7,7 +7,7 @@ type Props = {
   title: string;
 };
 
-export function ScreenHeader({ title }: Props) {
+export default function ScreenHeader({ title }: Props) {
   const navigation = useNavigation();
 
   return (

@@ -2,7 +2,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '@/screens/HomeScreen';
-import LessonScreen from '@/screens/LessonScreen';
+import LessonScreen from '@/screens/LessonScreen4';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import HomeStack from './HomeStack';

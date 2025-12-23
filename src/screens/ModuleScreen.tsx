@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { ScreenHeader } from '@/components/ScreenHeader';
+import ScreenHeader from '@/components/ScreenHeader';
 
 export default function ModuleScreen() {
   const navigation = useNavigation();
@@ -48,22 +48,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f0f6ff',
     paddingHorizontal: 20,
-  },
-
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-    marginTop: 8,
-  },
-  backBtn: {
-    padding: 8,
-    marginRight: 8,
-  },
-  headerTitle: {
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#2c3e50',
   },
 
   description: {

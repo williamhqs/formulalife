@@ -3,18 +3,17 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '@/screens/HomeScreen';
 import FormulaScreen from '@/features/home/presentation/FormulaScreen';
-import type { RootStackParamList } from '../types/navigation';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
 import ModuleScreen from '@/screens/ModuleScreen';
 import LessonScreen from '@/screens/LessonScreen';
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
 
 type RootStackParamList = {
   HomeMain: undefined;
   ModuleScreen: { module: any };
   LessonScreen: { lesson: any };
 };
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function GradeSubjectScreen() {
   return <Text style={{ flex: 1, textAlign: 'center', marginTop: 50 }}>Practice Screen</Text>;

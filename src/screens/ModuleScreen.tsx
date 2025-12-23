@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { ScreenHeader } from '@/components/ScreenHeader';
 
 export default function ModuleScreen() {
   const navigation = useNavigation();
@@ -12,13 +13,7 @@ export default function ModuleScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <FontAwesome5 name="chevron-left" size={18} color="#2c3e50" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{module.title}</Text>
-      </View>
+      <ScreenHeader title={module?.title} />
 
       {/* 描述 */}
       {module.description && <Text style={styles.description}>{module.description}</Text>}
@@ -31,7 +26,7 @@ export default function ModuleScreen() {
         renderItem={({ item, index }) => (
           <TouchableOpacity
             style={styles.lessonCard}
-            onPress={() => navigation.navigate('LessonScreen')}>
+            onPress={() => navigation.navigate('LessonScreen', { lesson: item })}>
             <View style={styles.lessonIndex}>
               <Text style={styles.lessonIndexText}>{index + 1}</Text>
             </View>

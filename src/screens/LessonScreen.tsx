@@ -12,6 +12,7 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
+import { ScreenHeader } from '@/components/ScreenHeader';
 
 function LessonScreen() {
   const [state, setState] = useState<MathState>(lesson05.initialState);
@@ -80,7 +81,7 @@ function LessonScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>加在一起</Text>
+      <ScreenHeader title="加在一起" />
 
       <View style={styles.ballContainer}>{renderBalls()}</View>
 
@@ -111,7 +112,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f0f6ff',
     paddingHorizontal: 20,
-    paddingTop: 20,
     alignItems: 'center',
   },
   title: { fontSize: 32, fontWeight: 'bold', color: '#2c3e50', marginBottom: 20 },

@@ -29,7 +29,6 @@ export default function LessonScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScreenHeader title={lesson05.title ?? '课程'} />
-      <ScreenHeader title={'课程'} />
       {/* ===== 内容卡片 ===== */}
       <View style={styles.card}>
         {phase === 'concept' ? (

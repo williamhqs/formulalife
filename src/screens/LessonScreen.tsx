@@ -10,10 +10,17 @@ import { Action } from '../engine/core/Action';
 import { Ball } from '@/components/Ball';
 import ScreenHeader from '@/components/ScreenHeader';
 import { ConceptView } from '@/components/ConceptView';
+import { Lesson } from '@/lessons/gradesData';
+import { RouteProp } from '@react-navigation/native';
 
 type Phase = 'concept' | 'play';
 
-export default function LessonScreen() {
+type LessonScreenProps = {
+  route: RouteProp<{ params: { lesson: any } }, 'params'>;
+};
+
+export default function LessonScreen({ route }: LessonScreenProps) {
+  const lesson = route.params;
   const [phase, setPhase] = useState<Phase>('concept');
 
   const [state, setState] = useState<MathState>(lesson05.initialState);

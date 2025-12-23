@@ -2,70 +2,15 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { grades as gradesData } from '../lessons/gradesData';
 
 const { width } = Dimensions.get('window');
 
-// 年级数据：一年级到六年级
-const grades = [
-  { id: 'g1', name: '一年级', icon: 'school' },
-  { id: 'g2', name: '二年级', icon: 'school' },
-  { id: 'g3', name: '三年级', icon: 'school' },
-  { id: 'g4', name: '四年级', icon: 'school' },
-  { id: 'g5', name: '五年级', icon: 'school' },
-  { id: 'g6', name: '六年级', icon: 'school' },
-];
-
-// 学科及模块示例
-const subjectsByGrade: Record<string, any[]> = {
-  g1: [
-    {
-      id: 'math',
-      name: '数学',
-      icon: 'calculator',
-      modules: [
-        {
-          id: 'm1',
-          title: '数与运算',
-          lessons: [
-            { id: 'm1-l1', title: '认识数字' },
-            { id: 'm1-l2', title: '数的顺序与大小' },
-            { id: 'm1-l3', title: '加法基础' },
-            { id: 'm1-l4', title: '减法基础' },
-          ],
-        },
-        {
-          id: 'm2',
-          title: '比较与关系',
-          lessons: [
-            { id: 'm2-l1', title: '比较长度和重量' },
-            { id: 'm2-l2', title: '认识多与少' },
-            { id: 'm2-l3', title: '理解等于与不等于' },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'physics',
-      name: '物理',
-      icon: 'atom',
-      modules: [
-        {
-          id: 'm3',
-          title: '力与运动',
-          lessons: [
-            { id: 'm3-l1', title: '简单的推拉' },
-            { id: 'm3-l2', title: '物体的运动状态' },
-          ],
-        },
-      ],
-    },
-  ],
-};
-
 export default function HomeScreen({ navigation }: any) {
-  const [selectedGrade, setSelectedGrade] = useState(grades[0]);
+  const gradeList = gradesData.map((g) => ({ id: g.id, name: g.name, icon: 'school' }));
+  const [selectedGrade, setSelectedGrade] = useState(gradeList[0]);
 
-  const renderGradeItem = ({ item }: { item: (typeof grades)[0] }) => (
+  const renderGradeItem = ({ item }: { item: (typeof gradeList)[0] }) => (
     <TouchableOpacity
       onPress={() => setSelectedGrade(item)}
       style={[styles.gradeItem, item.id === selectedGrade.id && styles.gradeItemActive]}>
@@ -93,18 +38,21 @@ export default function HomeScreen({ navigation }: any) {
             style={styles.moduleCard}
             onPress={() => navigation.navigate('ModuleScreen', { module: mod })}>
             <Text style={styles.moduleTitle}>{mod.title}</Text>
-            <Text style={styles.moduleCount}>{mod.lessons.length} </Text>
+            <Text style={styles.moduleCount}>{mod.lessons.length} 课</Text>
           </TouchableOpacity>
         ))}
       </View>
     </View>
   );
 
+  // 根据选中的年级找到对应科目
+  const subjects = gradesData.find((g) => g.id === selectedGrade.id)?.subjects ?? [];
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>选择学年</Text>
       <FlatList
-        data={grades}
+        data={gradeList}
         horizontal
         renderItem={renderGradeItem}
         keyExtractor={(item) => item.id}
@@ -112,7 +60,7 @@ export default function HomeScreen({ navigation }: any) {
         showsHorizontalScrollIndicator={false}
       />
       <FlatList
-        data={subjectsByGrade[selectedGrade.id]}
+        data={subjects}
         renderItem={renderSubject}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.subjectList}

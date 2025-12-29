@@ -1,4 +1,3 @@
-// components/Ball.tsx
 import React, { useEffect } from 'react';
 import Animated, {
   useSharedValue,
@@ -9,25 +8,48 @@ import Animated, {
 } from 'react-native-reanimated';
 import { StyleSheet } from 'react-native';
 
+export type BallVariant = 'static' | 'add' | 'remove';
+
 type Props = {
-  animated?: boolean;
+  variant?: BallVariant;
 };
 
-export function Ball({ animated }: Props) {
-  const translateY = useSharedValue(animated ? -100 : 0); // 弹性落下
-  const opacity = useSharedValue(animated ? 0 : 1);
+export function Ball({ variant = 'static' }: Props) {
+  const translateY = useSharedValue(0);
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
 
   useEffect(() => {
-    if (animated) {
-      // 弹性落地
-      translateY.value = withSpring(0, { damping: 8, stiffness: 120 });
-      // 渐显
-      opacity.value = withTiming(1, { duration: 500, easing: Easing.ease });
+    switch (variant) {
+      /** ➕ 加法：从上方掉下来 */
+      case 'add':
+        translateY.value = -80;
+        opacity.value = 0;
+        translateY.value = withSpring(0, {
+          damping: 10,
+          stiffness: 120,
+        });
+        opacity.value = withTiming(1, { duration: 300 });
+        break;
+
+      /** ➖ 减法：缩小 + 淡出 */
+      case 'remove':
+        scale.value = withTiming(0, {
+          duration: 300,
+          easing: Easing.inOut(Easing.ease),
+        });
+        opacity.value = withTiming(0, { duration: 300 });
+        break;
+
+      /** 初始静态 */
+      case 'static':
+      default:
+        break;
     }
-  }, []);
+  }, [variant]);
 
   const style = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
+    transform: [{ translateY: translateY.value }, { scale: scale.value }],
     opacity: opacity.value,
   }));
 

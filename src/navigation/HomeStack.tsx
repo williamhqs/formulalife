@@ -1,27 +1,11 @@
-// navigation/RootNavigator.tsx
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '@/screens/HomeScreen';
-import FormulaScreen from '@/features/home/presentation/FormulaScreen';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
 import ModuleScreen from '@/screens/ModuleScreen';
 import LessonScreen from '@/screens/LessonScreen';
-
-type RootStackParamList = {
-  HomeMain: undefined;
-  ModuleScreen: { module: any };
-  LessonScreen: { lesson: any };
-};
+import { RootStackParamList } from '@/navigation/types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function GradeSubjectScreen() {
-  return <Text style={{ flex: 1, textAlign: 'center', marginTop: 50 }}>Practice Screen</Text>;
-}
-
-// function ModuleScreen() {
-//   return <Text style={{ flex: 1, textAlign: 'center', marginTop: 50 }}>Profile Screen</Text>;
-// }
 
 export default function HomeStack() {
   return (
@@ -31,11 +15,6 @@ export default function HomeStack() {
         component={HomeScreen}
         options={{ title: '首页', headerShown: false }}
       />
-      {/* <Stack.Screen
-        name="GradeSubject"
-        component={GradeSubjectScreen}
-        options={{ title: '选择年级/科目' }}
-      /> */}
       <Stack.Screen name="ModuleScreen" component={ModuleScreen} />
       <Stack.Screen name="LessonScreen" component={LessonScreen} options={{ title: '课程内容' }} />
     </Stack.Navigator>

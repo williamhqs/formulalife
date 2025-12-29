@@ -1,60 +1,59 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-type Concept = {
-  title: string;
+type ConceptProps = {
+  title?: string;
   description: string;
+  formula?: string;
+  hint?: string;
 };
 
-type Lesson = {
-  concept: Concept;
-};
-
-export function ConceptView({ lesson }: { lesson: Lesson }) {
-  const { title, description } = lesson.concept;
-
+export function ConceptView({ title, description, formula, hint }: ConceptProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {title && <Text style={styles.title}>{title}</Text>}
 
       <Text style={styles.desc}>{description}</Text>
 
-      {/* 预留：以后可以放演示动画 / 图形 */}
-      <View style={styles.hintBox}>
-        <Text style={styles.hintText}>想一想：如果再加一个，会发生什么？</Text>
-      </View>
+      {formula && <Text style={styles.formula}>{formula}</Text>}
+
+      {hint && (
+        <View style={styles.hintBox}>
+          <Text style={styles.hintText}>{hint}</Text>
+        </View>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    paddingVertical: 16,
   },
-
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#2c3e50',
     marginBottom: 12,
   },
-
   desc: {
-    fontSize: 18,
-    lineHeight: 28,
-    color: '#34495e',
-    marginBottom: 20,
-  },
-
-  hintBox: {
-    backgroundColor: '#f0f6ff',
-    borderRadius: 16,
-    padding: 14,
-  },
-
-  hintText: {
     fontSize: 16,
-    color: '#3498db',
-    fontWeight: '500',
+    lineHeight: 24,
+    marginBottom: 12,
+  },
+  formula: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 12,
+  },
+  hintBox: {
+    marginTop: 16,
+    padding: 12,
+    backgroundColor: '#f5f7fa',
+    borderRadius: 12,
+  },
+  hintText: {
+    fontSize: 14,
+    color: '#666',
   },
 });

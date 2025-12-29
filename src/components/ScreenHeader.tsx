@@ -12,12 +12,12 @@ export default function ScreenHeader({ title }: Props) {
 
   return (
     <View style={styles.header}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backArea}>
         <FontAwesome5 name="chevron-left" size={18} color="#2c3e50" />
+        <Text style={styles.headerTitle} numberOfLines={1}>
+          {title}
+        </Text>
       </TouchableOpacity>
-      <Text style={styles.headerTitle} numberOfLines={1}>
-        {title}
-      </Text>
     </View>
   );
 }
@@ -30,13 +30,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 8,
   },
-  backBtn: {
-    padding: 8,
-    marginRight: 8,
+
+  // ⬇️ 新增：把箭头 + 标题作为一个点击区域
+  backArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingRight: 8,
   },
+
   headerTitle: {
     fontSize: 26,
     fontWeight: 'bold',
     color: '#2c3e50',
+    marginLeft: 8, // 保持你原来的间距
   },
 });

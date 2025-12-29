@@ -6,11 +6,21 @@ export type Question = {
   answer?: any;
 };
 
+type LessonIntent = 'ADD' | 'SUBTRACT'; // | 'COMPARE' | 'MULTIPLY' | 'DIVIDE';
+
 export type Lesson = {
   id: string;
   title: string;
-  concept: { content: string };
-  play: { type: 'animation' | 'interaction'; data?: any };
+  intent?: LessonIntent;
+  concept: {
+    content: string;
+    description?: string;
+    formula?: string;
+  };
+  play: {
+    type: 'animation' | 'interaction';
+    data?: any;
+  };
   check: { questions: Question[] };
 };
 
@@ -48,16 +58,33 @@ export const grades: Grade[] = [
               {
                 id: 'l1',
                 title: '加法',
-                concept: { content: '加法是将两个数合并得到一个新的数...' },
-                play: { type: 'animation', data: { max: 10 } },
-                check: { questions: [{ id: 'q1', text: '2 + 3 = ?', answer: 5 }] },
+                intent: 'ADD',
+                concept: { content: '加法是将两个数合并...' },
+                play: {
+                  type: 'animation',
+                  data: { max: 10 },
+                },
+                check: {
+                  questions: [{ id: 'q1', text: '2 + 3 = ?', answer: 5 }],
+                },
               },
               {
                 id: 'l2',
                 title: '减法',
-                concept: { content: '减法是从一个数中去掉另一个数...' },
-                play: { type: 'animation', data: { max: 10 } },
-                check: { questions: [{ id: 'q1', text: '5 - 2 = ?', answer: 3 }] },
+                intent: 'SUBTRACT',
+                concept: {
+                  description:
+                    '从一个数量中去掉一些数量，这就是减法。例如有 5 个球，拿走 2 个，剩下 3 个。',
+                  formula: '5 - 2 = 3',
+                  content: '减法是从一个数中去掉...',
+                },
+                play: {
+                  type: 'animation',
+                  data: { min: 0 },
+                },
+                check: {
+                  questions: [{ id: 'q1', text: '5 - 2 = ?', answer: 3 }],
+                },
               },
             ],
           },

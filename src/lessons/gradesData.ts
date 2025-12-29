@@ -6,7 +6,7 @@ export type Question = {
   answer?: any;
 };
 
-type LessonIntent = 'ADD' | 'SUBTRACT'; // | 'COMPARE' | 'MULTIPLY' | 'DIVIDE';
+type LessonIntent = 'ADD' | 'SUBTRACT' | 'MULTIPLY'; // | 'DIVIDE';
 
 export type Lesson = {
   id: string;
@@ -18,7 +18,7 @@ export type Lesson = {
     formula?: string;
   };
   play: {
-    type: 'animation' | 'interaction';
+    type: 'animation' | 'interaction' | 'multiply';
     data?: any;
   };
   check: { questions: Question[] };
@@ -120,8 +120,15 @@ export const grades: Grade[] = [
               {
                 id: 'l1',
                 title: '乘法',
-                concept: { content: '乘法是重复加法的简便方法...' },
-                play: { type: 'animation', data: { max: 10 } },
+                intent: 'MULTIPLY',
+                concept: {
+                  formula: 'a × b = c',
+                  description: '乘法表示“有几组，每组几个”。',
+                  content: '3 组，每组 4 个',
+                },
+                play: {
+                  type: 'animation',
+                },
                 check: { questions: [{ id: 'q1', text: '3 × 4 = ?', answer: 12 }] },
               },
               {

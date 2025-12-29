@@ -1,7 +1,9 @@
 import { AddRule } from './AddRule';
+import { MultiplyRule } from './MultiplyRule';
 import { SubtractRule } from './SubtractRule';
 
 export const ruleMap: Record<string, any> = {
-  加法: AddRule,
-  减法: SubtractRule,
+  ADD: AddRule,
+  SUBTRACT: SubtractRule,
+  MULTIPLY: MultiplyRule,
 };

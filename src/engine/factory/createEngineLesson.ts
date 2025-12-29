@@ -4,7 +4,7 @@ import { ruleMap } from '../rules/index';
 import { EngineLesson } from '../../types/EngineLesson';
 
 export function createEngineLesson(lesson: Lesson): EngineLesson {
-  const rule = ruleMap[lesson.title];
+  const rule = ruleMap[lesson.intent ?? ''];
 
   if (!rule) {
     throw new Error(`No rule found for lesson: ${lesson.title}`);
@@ -37,6 +37,31 @@ export function createEngineLesson(lesson: Lesson): EngineLesson {
         },
       };
     case 'SUBTRACT':
+      return {
+        id: lesson.id,
+        title: lesson.title,
+        rule,
+
+        concept: {
+          content: lesson.concept.content,
+          description: lesson.concept.description,
+          formula: lesson.concept.formula,
+        },
+
+        play: {
+          initialState: { objects: 5 },
+          rule,
+          allowedActions: ['SUBSTRACT'],
+          min: lesson.play.data?.min,
+        },
+
+        check: {
+          question: lesson.check.questions[0].text,
+          answer: lesson.check.questions[0].answer,
+          explanation: '试着用动画再做一遍。',
+        },
+      };
+    case 'MULTIPLY':
       return {
         id: lesson.id,
         title: lesson.title,

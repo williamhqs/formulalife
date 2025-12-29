@@ -2,17 +2,13 @@ import React, { useMemo, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-
 import ScreenHeader from '@/components/ScreenHeader';
 import { ConceptView } from '@/components/ConceptView';
-import { Ball, BallVariant } from '@/components/Ball';
-
 import { RootStackParamList } from '@/navigation/types';
 import { createEngineLesson } from '@/engine/factory/createEngineLesson';
 import { FormulaEngine } from '@/engine/core/Engine';
 import { MathState } from '@/engine/core/MathState';
 import { Action } from '@/engine/core/Action';
-import { BallsAnimation } from '@/components/BallAnimation';
 import { AddPlay } from './AddPlay';
 import { SubtractPlay } from './SubtractPlay';
 
@@ -35,18 +31,9 @@ export default function LessonScreen({ route }: LessonScreenProps) {
   /** ④ 引擎 */
   const engine = useMemo(() => new FormulaEngine(engineLesson.rule), [engineLesson.rule]);
 
-  /** ⑤ 执行动作 */
   const onAction = (action: Action) => {
     setState(engine.applyAction(state, action));
   };
-
-  /** ⑥ 派生数据 */
-  const initialCount = engineLesson.play.initialState.objects;
-  const currentCount = state.objects;
-  const delta = currentCount - initialCount;
-  const { max = Infinity, min = -Infinity } = engineLesson.play;
-  // 确定主操作类型（ADD / REMOVE / RESET）
-  const primaryAction = engineLesson.play.allowedActions[0] as 'ADD' | 'REMOVE' | 'RESET';
 
   const PlayComponent = useMemo(() => {
     switch (lesson.intent) {
@@ -58,17 +45,6 @@ export default function LessonScreen({ route }: LessonScreenProps) {
         return null;
     }
   }, [lesson.intent]);
-
-  // Ball 动画类型
-  const ballVariant: BallVariant[] = [];
-
-  if (delta > 0) {
-    // 加法：新增球
-    for (let i = 0; i < delta; i++) ballVariant.push('add');
-  } else if (delta < 0) {
-    // 减法：消失球
-    for (let i = 0; i < Math.abs(delta); i++) ballVariant.push('remove');
-  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -121,6 +97,7 @@ const styles = StyleSheet.create({
   },
 
   ballContainer: {
+    height: 200,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',

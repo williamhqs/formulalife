@@ -1,15 +1,56 @@
-import { FlatList, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import React, { useState, useMemo } from 'react';
+import { FlatList, Text, TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import rawFormulas from '@/data/formula.json';
 import { Formula } from '@/types/formula';
+import { green } from 'react-native-reanimated/lib/typescript/Colors';
 
 const formulas = rawFormulas as Formula[];
 
+const categories = [
+  { id: 'all', name: '全部', color: '#64748b' },
+  { id: 'math', name: '数学', color: '#3b82f6' },
+  { id: 'physics', name: '物理', color: '#f97316' },
+  { id: 'chemistry', name: '化学', color: '#8b5cf6' },
+  { id: 'biology', name: '生物', color: '#10b981' },
+];
+
 export function FormulaListScreen({ navigation }: any) {
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // 根据选中分类过滤公式
+  const filteredFormulas = useMemo(() => {
+    if (selectedCategory === 'all') return formulas;
+    return formulas.filter((f) => f.category.toLowerCase() === selectedCategory);
+  }, [selectedCategory]);
+
   return (
     <SafeAreaView style={styles.safe}>
+      <View style={{ paddingVertical: 8, paddingHorizontal: 18 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.categoryContainer}>
+          {categories.map((cat) => {
+            const selected = selectedCategory === cat.id;
+            return (
+              <TouchableOpacity
+                key={cat.id}
+                style={[styles.categoryBtn, selected && { backgroundColor: cat.color }]}
+                onPress={() => setSelectedCategory(cat.id)}>
+                <Text
+                  style={[styles.categoryText, selected && { color: '#fff', fontWeight: '600' }]}>
+                  {cat.name}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
+      </View>
+
+      {/* 公式列表 */}
       <FlatList
-        data={formulas}
+        data={filteredFormulas}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.container}
         renderItem={({ item }) => (
@@ -17,17 +58,16 @@ export function FormulaListScreen({ navigation }: any) {
             activeOpacity={0.92}
             style={styles.card}
             onPress={() => navigation.navigate('FormulaDetailScreen', { formula: item })}>
-            {/* Symbol */}
             <Text style={styles.symbol}>{item.symbol}</Text>
-
-            {/* Name */}
             <Text style={styles.name}>{item.name}</Text>
 
-            {/* Meta */}
-            <View style={styles.meta}>
-              <Text style={styles.metaText}>Lv {item.level}</Text>
-              <Text style={styles.dot}>·</Text>
-              <Text style={styles.metaText}>{item.category}</Text>
+            <View style={styles.tags}>
+              <View style={styles.tag}>
+                <Text style={styles.tagText}>Lv {item.level}</Text>
+              </View>
+              <View style={styles.tag}>
+                <Text style={styles.tagText}>{item.category}</Text>
+              </View>
             </View>
           </TouchableOpacity>
         )}
@@ -39,7 +79,7 @@ export function FormulaListScreen({ navigation }: any) {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#f5f7fa', // 比纯灰更高级
+    backgroundColor: '#f5f7fa',
   },
 
   container: {
@@ -52,21 +92,17 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 20,
     marginBottom: 14,
-
-    // iOS-like shadow（更克制）
     shadowColor: '#000',
     shadowOpacity: 0.04,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
-
-    // Android
     elevation: 2,
   },
 
   symbol: {
     fontSize: 30,
     fontWeight: '600',
-    color: '#111827', // 更深一点，主视觉
+    color: '#111827',
     letterSpacing: 0.4,
   },
 
@@ -77,19 +113,39 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
 
-  meta: {
+  tags: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  tag: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 999,
+    backgroundColor: '#f1f5f9',
+    marginRight: 8,
+  },
+  tagText: {
+    fontSize: 12,
+    color: '#64748b',
+    fontWeight: '500',
+    lineHeight: 16,
+  },
+  categoryContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
   },
-
-  metaText: {
+  categoryText: {
     fontSize: 12,
-    color: '#9ca3af', // 明确是“辅助信息”
+    color: '#475569',
+    textAlign: 'center',
   },
-
-  dot: {
-    marginHorizontal: 6,
-    color: '#d1d5db',
+  categoryBtn: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 999,
+    backgroundColor: '#e2e8f0',
+    marginRight: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

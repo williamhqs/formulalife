@@ -6,6 +6,7 @@ import LessonScreen from '@/screens/LessonScreen4';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import HomeStack from './HomeStack';
+import { FormulaDomainScreen } from '@/screens/FormulaDomainScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +42,7 @@ export default function AppNavigator() {
 
       <Tab.Screen
         name="Profile"
-        component={HomeScreen} // 可以改为 ProfileScreen
+        component={FormulaDomainScreen} // 可以改为 ProfileScreen
         options={{
           tabBarLabel: '我的',
           tabBarIcon: ({ color, size }) => (

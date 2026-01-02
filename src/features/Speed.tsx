@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from 'react-native';
-import { formulas } from './home/data/formula';
+import { formulas } from './home/data/formula1';
 export default function SpeedFormulaPage() {
   const f = formulas.speed;
 

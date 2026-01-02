@@ -51,7 +51,7 @@ export function createEngineLesson(lesson: Lesson): EngineLesson {
         play: {
           initialState: { objects: 5 },
           rule,
-          allowedActions: ['SUBSTRACT'],
+          allowedActions: ['ADD_GROUP', 'ADD_PER_GROUP'],
           min: lesson.play.data?.min,
         },
 
@@ -66,7 +66,6 @@ export function createEngineLesson(lesson: Lesson): EngineLesson {
         id: lesson.id,
         title: lesson.title,
         rule,
-
         concept: {
           content: lesson.concept.content,
           description: lesson.concept.description,
@@ -76,7 +75,7 @@ export function createEngineLesson(lesson: Lesson): EngineLesson {
         play: {
           initialState: { objects: 5 },
           rule,
-          allowedActions: ['SUBSTRACT'],
+          allowedActions: ['MULTIPLY'],
           min: lesson.play.data?.min,
         },
 

@@ -11,6 +11,7 @@ import { MathState } from '@/engine/core/MathState';
 import { Action } from '@/engine/core/Action';
 import { AddPlay } from './AddPlay';
 import { SubtractPlay } from './SubtractPlay';
+import { MultiplyPlay } from './MultiplyPlay';
 
 type Phase = 'concept' | 'play';
 
@@ -34,6 +35,9 @@ export default function LessonScreen({ route }: LessonScreenProps) {
   const onAction = (action: Action) => {
     setState(engine.applyAction(state, action));
   };
+
+  const [groups, setGroups] = useState(2);
+  const [perGroup, setPerGroup] = useState(3);
 
   const PlayComponent = useMemo(() => {
     switch (lesson.intent) {
@@ -70,6 +74,12 @@ export default function LessonScreen({ route }: LessonScreenProps) {
             )}
           </>
         )}
+        <MultiplyPlay
+          groups={groups}
+          perGroup={perGroup}
+          onAddGroup={() => setGroups(groups + 1)}
+          onAddPerGroup={() => setPerGroup(perGroup + 1)}
+        />
       </View>
     </SafeAreaView>
   );

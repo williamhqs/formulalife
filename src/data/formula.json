@@ -1,0 +1,57 @@
+[
+  {
+    "id": "add",
+    "name": "加法",
+    "symbol": "a + b = c",
+    "category": "arithmetic",
+    "level": 1,
+    "description": "把两个数合在一起，得到一个新的数。",
+    "examples": ["3 + 2 = 5", "1 + 4 = 5"],
+    "visual": "count",
+    "dependsOn": []
+  },
+  {
+    "id": "subtract",
+    "name": "减法",
+    "symbol": "a − b = c",
+    "category": "arithmetic",
+    "level": 1,
+    "description": "从一个数中去掉另一个数。",
+    "examples": ["5 − 2 = 3"],
+    "visual": "remove",
+    "dependsOn": ["add"]
+  },
+  {
+    "id": "multiply",
+    "name": "乘法",
+    "symbol": "a × b = c",
+    "category": "arithmetic",
+    "level": 2,
+    "description": "相同数量的重复加法。",
+    "examples": ["2 × 3 = 6"],
+    "visual": "groups",
+    "dependsOn": ["add"]
+  },
+  {
+    "id": "divide",
+    "name": "除法",
+    "symbol": "a ÷ b = c",
+    "category": "arithmetic",
+    "level": 2,
+    "description": "把一个数平均分成若干份。",
+    "examples": ["6 ÷ 2 = 3"],
+    "visual": "groups",
+    "dependsOn": ["multiply"]
+  },
+  {
+    "id": "square",
+    "name": "平方",
+    "symbol": "a²",
+    "category": "algebra",
+    "level": 3,
+    "description": "一个数乘以它自己。",
+    "examples": ["3² = 9"],
+    "visual": "area",
+    "dependsOn": ["multiply"]
+  }
+]

@@ -3,7 +3,7 @@ import { SafeAreaFrameContext, SafeAreaView } from 'react-native-safe-area-conte
 import { View, Text, ScrollView, Dimensions, StyleSheet } from 'react-native';
 import Slider from '@react-native-community/slider';
 import MathView from 'react-native-katex';
-import { formulas } from '../data/formula';
+import { formulas } from '../data/formula1';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '@/types/navigation';
 import { useHeaderHeight } from '@react-navigation/elements';

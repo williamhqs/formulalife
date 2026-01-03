@@ -7,7 +7,7 @@ import { green } from 'react-native-reanimated/lib/typescript/Colors';
 
 const formulas = rawFormulas as Formula[];
 
-const categories = [
+const domains = [
   { id: 'all', name: '全部', color: '#64748b' },
   { id: 'math', name: '数学', color: '#3b82f6' },
   { id: 'physics', name: '物理', color: '#f97316' },
@@ -16,13 +16,12 @@ const categories = [
 ];
 
 export function FormulaListScreen({ navigation }: any) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedDomain, setSelectedDomain] = useState('all');
 
-  // 根据选中分类过滤公式
   const filteredFormulas = useMemo(() => {
-    if (selectedCategory === 'all') return formulas;
-    return formulas.filter((f) => f.category.toLowerCase() === selectedCategory);
-  }, [selectedCategory]);
+    if (selectedDomain === 'all') return formulas;
+    return formulas.filter((f) => f.domain.toLowerCase() === selectedDomain);
+  }, [selectedDomain]);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -31,13 +30,13 @@ export function FormulaListScreen({ navigation }: any) {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.categoryContainer}>
-          {categories.map((cat) => {
-            const selected = selectedCategory === cat.id;
+          {domains.map((cat) => {
+            const selected = selectedDomain === cat.id;
             return (
               <TouchableOpacity
                 key={cat.id}
                 style={[styles.categoryBtn, selected && { backgroundColor: cat.color }]}
-                onPress={() => setSelectedCategory(cat.id)}>
+                onPress={() => setSelectedDomain(cat.id)}>
                 <Text
                   style={[styles.categoryText, selected && { color: '#fff', fontWeight: '600' }]}>
                   {cat.name}
@@ -47,6 +46,9 @@ export function FormulaListScreen({ navigation }: any) {
           })}
         </ScrollView>
       </View>
+      <Text>
+        {selectedDomain} {filteredFormulas.length}
+      </Text>
 
       {/* 公式列表 */}
       <FlatList

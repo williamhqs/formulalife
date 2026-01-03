@@ -3,6 +3,7 @@
     "id": "add",
     "name": "加法",
     "symbol": "a + b = c",
+    "domain": "math",
     "category": "arithmetic",
     "level": 1,
     "description": "把两个数合在一起，得到一个新的数。",
@@ -13,6 +14,7 @@
   {
     "id": "subtract",
     "name": "减法",
+    "domain": "math",
     "symbol": "a − b = c",
     "category": "arithmetic",
     "level": 1,
@@ -24,6 +26,7 @@
   {
     "id": "multiply",
     "name": "乘法",
+    "domain": "math",
     "symbol": "a × b = c",
     "category": "arithmetic",
     "level": 2,
@@ -35,6 +38,7 @@
   {
     "id": "divide",
     "name": "除法",
+    "domain": "math",
     "symbol": "a ÷ b = c",
     "category": "arithmetic",
     "level": 2,
@@ -46,6 +50,7 @@
   {
     "id": "square",
     "name": "平方",
+    "domain": "math",
     "symbol": "a²",
     "category": "algebra",
     "level": 3,
@@ -57,6 +62,7 @@
   {
     "id": "cube",
     "name": "立方",
+    "domain": "math",
     "symbol": "a³",
     "category": "algebra",
     "level": 3,
@@ -67,6 +73,7 @@
   },
   {
     "id": "fraction_add",
+    "domain": "math",
     "name": "分数加法",
     "symbol": "a/b + c/d = (ad+bc)/bd",
     "category": "fraction",
@@ -78,6 +85,7 @@
   },
   {
     "id": "fraction_subtract",
+    "domain": "math",
     "name": "分数减法",
     "symbol": "a/b − c/d = (ad−bc)/bd",
     "category": "fraction",
@@ -89,6 +97,7 @@
   },
   {
     "id": "percentage",
+    "domain": "math",
     "name": "百分数",
     "symbol": "P% = (a/b) × 100%",
     "category": "fraction",
@@ -100,6 +109,7 @@
   },
   {
     "id": "area_square",
+    "domain": "math",
     "name": "正方形面积",
     "symbol": "S = a²",
     "category": "geometry",
@@ -111,6 +121,7 @@
   },
   {
     "id": "area_rectangle",
+    "domain": "math",
     "name": "长方形面积",
     "symbol": "S = a × b",
     "category": "geometry",
@@ -122,6 +133,7 @@
   },
   {
     "id": "perimeter_rectangle",
+    "domain": "math",
     "name": "长方形周长",
     "symbol": "P = 2(a + b)",
     "category": "geometry",
@@ -133,6 +145,7 @@
   },
   {
     "id": "triangle_area",
+    "domain": "math",
     "name": "三角形面积",
     "symbol": "S = (a × h)/2",
     "category": "geometry",
@@ -144,6 +157,7 @@
   },
   {
     "id": "circle_area",
+    "domain": "math",
     "name": "圆面积",
     "symbol": "S = πr²",
     "category": "geometry",
@@ -155,6 +169,7 @@
   },
   {
     "id": "circle_circumference",
+    "domain": "math",
     "name": "圆周长",
     "symbol": "C = 2πr",
     "category": "geometry",
@@ -166,6 +181,7 @@
   },
   {
     "id": "pythagoras",
+    "domain": "math",
     "name": "勾股定理",
     "symbol": "a² + b² = c²",
     "category": "geometry",
@@ -177,6 +193,7 @@
   },
   {
     "id": "linear_equation",
+    "domain": "math",
     "name": "一元一次方程",
     "symbol": "ax + b = c",
     "category": "algebra",
@@ -188,6 +205,7 @@
   },
   {
     "id": "quadratic_equation",
+    "domain": "math",
     "name": "一元二次方程",
     "symbol": "ax² + bx + c = 0",
     "category": "algebra",
@@ -199,6 +217,7 @@
   },
   {
     "id": "simple_interest",
+    "domain": "math",
     "name": "简单利息公式",
     "symbol": "I = P × r × t",
     "category": "finance",
@@ -210,6 +229,7 @@
   },
   {
   "id": "ratio",
+  "domain": "math",
   "name": "比",
   "symbol": "a : b",
   "category": "arithmetic",
@@ -221,6 +241,7 @@
 },
 {
   "id": "proportion",
+  "domain": "math",
   "name": "比例",
   "symbol": "a / b = c / d",
   "category": "arithmetic",
@@ -232,6 +253,7 @@
 },
 {
   "id": "power_rule",
+  "domain": "math",
   "name": "幂的乘法",
   "symbol": "a^m × a^n = a^(m+n)",
   "category": "algebra",
@@ -243,6 +265,7 @@
 },
 {
   "id": "power_divide",
+  "domain": "math",
   "name": "幂的除法",
   "symbol": "a^m ÷ a^n = a^(m−n)",
   "category": "algebra",
@@ -254,6 +277,7 @@
 },
 {
   "id": "square_root",
+  "domain": "math",
   "name": "平方根",
   "symbol": "√a = b",
   "category": "algebra",
@@ -265,6 +289,7 @@
 },
 {
   "id": "root_multiply",
+  "domain": "math",
   "name": "根式乘法",
   "symbol": "√a × √b = √(ab)",
   "category": "algebra",
@@ -276,6 +301,7 @@
 },
 {
   "id": "square_sum",
+  "domain": "math",
   "name": "平方和公式",
   "symbol": "(a + b)² = a² + 2ab + b²",
   "category": "algebra",
@@ -287,6 +313,7 @@
 },
 {
   "id": "square_diff",
+  "domain": "math",
   "name": "平方差公式",
   "symbol": "(a − b)(a + b) = a² − b²",
   "category": "algebra",
@@ -298,6 +325,7 @@
 },
 {
   "id": "sin",
+  "domain": "math",
   "name": "正弦",
   "symbol": "sinθ = 对边 / 斜边",
   "category": "trigonometry",
@@ -309,6 +337,7 @@
 },
 {
   "id": "cos",
+  "domain": "math",
   "name": "余弦",
   "symbol": "cosθ = 邻边 / 斜边",
   "category": "trigonometry",
@@ -320,6 +349,7 @@
 },
 {
   "id": "tan",
+  "domain": "math",
   "name": "正切",
   "symbol": "tanθ = 对边 / 邻边",
   "category": "trigonometry",
@@ -331,6 +361,7 @@
 },
 {
   "id": "probability",
+  "domain": "math",
   "name": "概率",
   "symbol": "P = 有利情况 / 所有情况",
   "category": "probability",
@@ -342,6 +373,7 @@
 },
 {
   "id": "average",
+  "domain": "math",
   "name": "平均数",
   "symbol": "平均数 = 总和 / 数量",
   "category": "statistics",
@@ -353,6 +385,7 @@
 },
 {
   "id": "linear_function",
+  "domain": "math",
   "name": "一次函数",
   "symbol": "y = ax + b",
   "category": "function",
@@ -364,6 +397,7 @@
 },
 {
   "id": "quadratic_function",
+  "domain": "math",
   "name": "二次函数",
   "symbol": "y = ax² + bx + c",
   "category": "function",

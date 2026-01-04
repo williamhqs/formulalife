@@ -62,7 +62,9 @@ export function FormulaListScreen({ navigation }: any) {
           <TouchableOpacity
             activeOpacity={0.92}
             style={styles.card}
-            onPress={() => navigation.navigate('FormulaDetailScreen', { formula: item })}>
+            onPress={() =>
+              navigation.navigate('FormulaDetailScreen', { formula: item, themeColor })
+            }>
             {/* 左侧主题色条 */}
             <View style={[styles.accent, { backgroundColor: themeColor }]} />
 

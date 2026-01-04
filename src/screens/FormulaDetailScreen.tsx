@@ -2,20 +2,35 @@ import ScreenHeader from '@/components/ScreenHeader';
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Formula } from '@/types/formula';
 
-export function FormulaDetailScreen({ route }: any) {
-  const { formula } = route.params;
+type Props = {
+  route: {
+    params: {
+      formula: Formula;
+      themeColor?: string;
+    };
+  };
+};
+
+export function FormulaDetailScreen({ route }: Props) {
+  const { formula, themeColor = '#64748b' } = route.params;
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScreenHeader title="详情" />
+      <ScreenHeader title="公式详情" />
 
       <ScrollView contentContainerStyle={styles.container}>
-        {/* ===== 公式主卡片 ===== */}
+        {/* ===== 主卡片 ===== */}
         <View style={styles.card}>
+          {/* 左侧色条 */}
+          <View style={[styles.accent, { backgroundColor: themeColor }]} />
+
+          {/* 公式名称 & 符号 */}
           <Text style={styles.name}>{formula.name}</Text>
           <Text style={styles.symbol}>{formula.symbol}</Text>
 
+          {/* level + category */}
           <View style={styles.meta}>
             <Text style={styles.metaText}>Lv {formula.level}</Text>
             <Text style={styles.dot}>·</Text>
@@ -23,7 +38,7 @@ export function FormulaDetailScreen({ route }: any) {
           </View>
         </View>
 
-        {/* ===== 解释 ===== */}
+        {/* ===== 概念说明 ===== */}
         <View style={styles.card}>
           <Text style={styles.section}>概念说明</Text>
           <Text style={styles.desc}>{formula.description}</Text>
@@ -32,14 +47,14 @@ export function FormulaDetailScreen({ route }: any) {
         {/* ===== 示例 ===== */}
         <View style={styles.card}>
           <Text style={styles.section}>示例</Text>
-          {formula.examples.map((e: string, i: number) => (
+          {formula.examples.map((e, i) => (
             <View key={i} style={styles.exampleRow}>
               <Text style={styles.example}>{e}</Text>
             </View>
           ))}
         </View>
 
-        {/* ===== 依赖 ===== */}
+        {/* ===== 前置知识 / 依赖 ===== */}
         {formula.dependsOn?.length > 0 && (
           <View style={styles.card}>
             <Text style={styles.section}>前置知识</Text>
@@ -74,6 +89,16 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
 
     elevation: 3,
+    position: 'relative', // 为绝对定位accent
+  },
+
+  accent: {
+    width: 4,
+    borderRadius: 2,
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
   },
 
   symbol: {
@@ -81,12 +106,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#1f2937',
     letterSpacing: 0.5,
+    marginTop: 6,
   },
 
   name: {
     fontSize: 18,
     fontWeight: '500',
-    marginTop: 6,
     color: '#374151',
   },
 

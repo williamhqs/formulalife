@@ -1,13 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { FlatList, Text, TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import rawFormulas from '@/data/formula.json';
-import { Formula } from '@/types/formula';
+import { allFormulas, getFormulasByDomain } from '@/data/index';
+import { Domain, Formula } from '@/types/formula';
 import { green } from 'react-native-reanimated/lib/typescript/Colors';
 
-const formulas = rawFormulas as Formula[];
-
-const domains = [
+const domains: { id: DomainFilter; name: string; color: string }[] = [
   { id: 'all', name: '全部', color: '#64748b' },
   { id: 'math', name: '数学', color: '#3b82f6' },
   { id: 'physics', name: '物理', color: '#f97316' },
@@ -15,12 +13,14 @@ const domains = [
   { id: 'biology', name: '生物', color: '#10b981' },
 ];
 
+type DomainFilter = 'all' | Domain;
+
 export function FormulaListScreen({ navigation }: any) {
-  const [selectedDomain, setSelectedDomain] = useState('all');
+  const [selectedDomain, setSelectedDomain] = useState<DomainFilter>('all');
 
   const filteredFormulas = useMemo(() => {
-    if (selectedDomain === 'all') return formulas;
-    return formulas.filter((f) => f.domain.toLowerCase() === selectedDomain);
+    if (selectedDomain === 'all') return allFormulas;
+    return getFormulasByDomain(selectedDomain);
   }, [selectedDomain]);
 
   return (
@@ -46,9 +46,6 @@ export function FormulaListScreen({ navigation }: any) {
           })}
         </ScrollView>
       </View>
-      <Text>
-        {selectedDomain} {filteredFormulas.length}
-      </Text>
 
       {/* 公式列表 */}
       <FlatList

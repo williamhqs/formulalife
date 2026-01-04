@@ -1,4 +1,27 @@
-export type FormulaVisual = 'count' | 'groups' | 'line' | 'area' | 'symbol';
+export type MathVisual =
+  | 'count'
+  | 'groups'
+  | 'line'
+  | 'area'
+  | 'symbol'
+  | 'fraction'
+  | 'percent'
+  | 'length'
+  | 'remove'
+  | 'volume'
+  | 'multiply'
+  | 'triangle'
+  | 'root'
+  | 'balance'
+  | 'chance'
+  | 'power'
+  | 'ratio'
+  | 'equation'
+  | 'graph';
+
+export type PhysicsVisual = 'motion' | 'force' | 'wave';
+
+export type FormulaVisual = MathVisual | PhysicsVisual;
 
 export type Domain = 'math' | 'physics' | 'chemistry' | 'biology';
 export type MathCategory = 'arithmetic' | 'algebra' | 'geometry' | 'statistics';
@@ -9,7 +32,7 @@ export type Formula = {
   symbol: string;
 
   domain: Domain;
-  category: MathCategory;
+  category: string;
 
   level: number;
   description: string;

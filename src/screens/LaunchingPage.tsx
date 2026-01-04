@@ -19,15 +19,6 @@ export default function LaunchingPage({ navigation }: any) {
       useNativeDriver: true,
     }).start();
 
-    // 模拟加载完成 2 秒后跳转
-    const timeout = setTimeout(() => {
-      navigation.replace('FormulaListScreen'); // 替换掉启动页
-    }, 2000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.replace('MainTabs');
     }, 2000);

@@ -31,12 +31,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-  // ⬇️ 新增：把箭头 + 标题作为一个点击区域
   backArea: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 8,
-    paddingRight: 8,
+    paddingHorizontal: 8,
   },
 
   headerTitle: {

@@ -8,7 +8,7 @@ export function FormulaDetailScreen({ route }: any) {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScreenHeader title="公式详情" />
+      <ScreenHeader title="详情" />
 
       <ScrollView contentContainerStyle={styles.container}>
         {/* ===== 公式主卡片 ===== */}

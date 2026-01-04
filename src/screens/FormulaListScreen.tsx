@@ -6,11 +6,11 @@ import { Domain, Formula } from '@/types/formula';
 import { green } from 'react-native-reanimated/lib/typescript/Colors';
 
 const domains: { id: DomainFilter; name: string; color: string }[] = [
-  { id: 'all', name: '全部', color: '#64748b' },
-  { id: 'math', name: '数学', color: '#3b82f6' },
-  { id: 'physics', name: '物理', color: '#f97316' },
-  { id: 'chemistry', name: '化学', color: '#8b5cf6' },
-  { id: 'biology', name: '生物', color: '#10b981' },
+  { id: 'all', name: '全部', color: '#334155' },
+  { id: 'math', name: '数学', color: '#1f2937' }, // #0f766e
+  { id: 'physics', name: '物理', color: '#ea580c' },
+  { id: 'chemistry', name: '化学', color: '#7c3aed' },
+  { id: 'biology', name: '生物', color: '#059669' },
 ];
 
 type DomainFilter = 'all' | Domain;

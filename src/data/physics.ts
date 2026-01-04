@@ -196,7 +196,7 @@ export const physicsFormulas: Formula[] = [
   },
 
   {
-    id: 'ideal_gas_law',
+    id: 'ideal_gas_law1',
     name: '理想气体状态方程',
     symbol: 'pV = nRT',
     domain: 'physics',

@@ -23,7 +23,11 @@ export type MathVisual =
   | 'energy'
   | 'circuit'
   | 'electric'
-  | 'gas';
+  | 'gas'
+  | 'table'
+  | 'chart'
+  | 'calculation'
+  | 'diagram';
 
 export type PhysicsVisual = 'motion' | 'force' | 'wave';
 

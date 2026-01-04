@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'bold',
     color: '#2c3e50',
-    marginLeft: 8, // 保持你原来的间距
+    marginLeft: 8,
   },
 });

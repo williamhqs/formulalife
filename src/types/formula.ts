@@ -17,7 +17,13 @@ export type MathVisual =
   | 'power'
   | 'ratio'
   | 'equation'
-  | 'graph';
+  | 'graph'
+  | 'matter'
+  | 'pressure'
+  | 'energy'
+  | 'circuit'
+  | 'electric'
+  | 'gas';
 
 export type PhysicsVisual = 'motion' | 'force' | 'wave';
 

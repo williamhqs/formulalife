@@ -57,8 +57,8 @@ export function FormulaListScreen({ navigation }: any) {
             activeOpacity={0.92}
             style={styles.card}
             onPress={() => navigation.navigate('FormulaDetailScreen', { formula: item })}>
-            <Text style={styles.symbol}>{item.symbol}</Text>
             <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.symbol}>{item.symbol}</Text>
 
             <View style={styles.tags}>
               <View style={styles.tag}>

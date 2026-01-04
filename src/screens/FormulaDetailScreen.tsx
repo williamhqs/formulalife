@@ -13,8 +13,8 @@ export function FormulaDetailScreen({ route }: any) {
       <ScrollView contentContainerStyle={styles.container}>
         {/* ===== 公式主卡片 ===== */}
         <View style={styles.card}>
-          <Text style={styles.symbol}>{formula.symbol}</Text>
           <Text style={styles.name}>{formula.name}</Text>
+          <Text style={styles.symbol}>{formula.symbol}</Text>
 
           <View style={styles.meta}>
             <Text style={styles.metaText}>Lv {formula.level}</Text>

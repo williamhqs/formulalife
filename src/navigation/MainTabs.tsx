@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import HomeStack from './HomeStack';
 import { FormulaDomainScreen } from '@/screens/FormulaDomainScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ProfileScreen from '@/screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +51,7 @@ export default function MainTabs() {
       />
       <Tab.Screen
         name="Profile"
-        component={FormulaDomainScreen} // or MeScreen
+        component={ProfileScreen}
         options={{
           tabBarLabel: '我的',
           tabBarIcon: ({ color, size }) => (

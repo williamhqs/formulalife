@@ -1,5 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { FlatList, Text, TouchableOpacity, StyleSheet, View, ScrollView } from 'react-native';
+import {
+  FlatList,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  View,
+  ScrollView,
+  Image,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { allFormulas, getFormulasByDomain } from '@/data/index';
 import { Domain, Formula } from '@/types/formula';
@@ -30,7 +38,7 @@ export function FormulaListScreen({ navigation }: any) {
 
   return (
     <SafeAreaView style={styles.safe}>
-      {/* 分类 */}
+      <Image source={require('@assets/download.png')} style={styles.logo} resizeMode="contain" />
       <View style={{ paddingVertical: 8, paddingHorizontal: 18 }}>
         <ScrollView
           horizontal
@@ -53,7 +61,6 @@ export function FormulaListScreen({ navigation }: any) {
         </ScrollView>
       </View>
 
-      {/* 公式列表 */}
       <FlatList
         data={filteredFormulas}
         keyExtractor={(item) => item.id}
@@ -178,5 +185,10 @@ const styles = StyleSheet.create({
     color: '#475569',
     textAlign: 'center',
     lineHeight: 16,
+  },
+  logo: {
+    width: 60,
+    height: 40,
+    marginBottom: 16,
   },
 });

@@ -5,9 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   title: string;
+  right?: React.ReactNode;
 };
 
-export default function ScreenHeader({ title }: Props) {
+export default function ScreenHeader({ title, right }: Props) {
   const navigation = useNavigation();
 
   return (
@@ -18,6 +19,7 @@ export default function ScreenHeader({ title }: Props) {
           {title}
         </Text>
       </TouchableOpacity>
+      {right && <View style={styles.right}>{right}</View>}
     </View>
   );
 }
@@ -43,5 +45,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#2c3e50',
     marginLeft: 8,
+  },
+
+  right: {
+    position: 'absolute',
+    right: 16,
   },
 });

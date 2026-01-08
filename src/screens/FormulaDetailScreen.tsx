@@ -1,8 +1,10 @@
 import ScreenHeader from '@/components/ScreenHeader';
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formula } from '@/types/formula';
+import { toggleFavorite, isFavorite } from '@/store/favorites';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 type Props = {
   route: {
@@ -16,9 +18,32 @@ type Props = {
 export function FormulaDetailScreen({ route }: Props) {
   const { formula, themeColor = '#64748b' } = route.params;
 
+  const [fav, setFav] = useState(false);
+
+  useEffect(() => {
+    isFavorite(formula.id).then(setFav);
+  }, [formula.id]);
+
+  const onToggle = async () => {
+    const list = await toggleFavorite(formula.id);
+    setFav(list.includes(formula.id));
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
-      <ScreenHeader title="公式详情" />
+      <ScreenHeader
+        title="公式详情"
+        right={
+          <TouchableOpacity onPress={onToggle} hitSlop={12}>
+            <FontAwesome5
+              name={fav ? 'star' : 'star'}
+              solid={fav}
+              size={18}
+              color={fav ? '#facc15' : '#9ca3af'}
+            />
+          </TouchableOpacity>
+        }
+      />
 
       <ScrollView contentContainerStyle={styles.container}>
         {/* ===== 主卡片 ===== */}

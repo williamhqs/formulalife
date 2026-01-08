@@ -6,6 +6,7 @@ import HomeStack from './HomeStack';
 import { FormulaDomainScreen } from '@/screens/FormulaDomainScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from '@/screens/ProfileScreen';
+import ProfileStack from './ProfileStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +52,7 @@ export default function MainTabs() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
           tabBarLabel: '我的',
           tabBarIcon: ({ color, size }) => (

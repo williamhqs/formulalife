@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   FlatList,
   Text,
@@ -12,6 +12,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { allFormulas, getFormulasByDomain } from '@/data/index';
 import { Domain, Formula } from '@/types/formula';
 import { green } from 'react-native-reanimated/lib/typescript/Colors';
+import { getFavorites } from '@/store/favorites';
+import { useFocusEffect } from '@react-navigation/native';
 
 const domains: { id: DomainFilter; name: string; color: string }[] = [
   { id: 'all', name: '全部', color: '#334155' },
@@ -25,6 +27,7 @@ type DomainFilter = 'all' | Domain;
 
 export function FormulaListScreen({ navigation }: any) {
   const [selectedDomain, setSelectedDomain] = useState<DomainFilter>('all');
+  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
 
   const filteredFormulas = useMemo(() => {
     if (selectedDomain === 'all') return allFormulas;
@@ -35,6 +38,12 @@ export function FormulaListScreen({ navigation }: any) {
     if (selectedDomain === 'all') return '#64748b';
     return domains.find((d) => d.id === selectedDomain)?.color ?? '#64748b';
   }, [selectedDomain]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getFavorites().then(setFavoriteIds);
+    }, [])
+  );
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -72,13 +81,15 @@ export function FormulaListScreen({ navigation }: any) {
             onPress={() =>
               navigation.navigate('FormulaDetailScreen', { formula: item, themeColor })
             }>
-            {/* 左侧主题色条 */}
             <View style={[styles.accent, { backgroundColor: themeColor }]} />
 
             {/* 内容 */}
             <View style={styles.content}>
               <Text style={styles.name}>{item.name}</Text>
-              <Text style={styles.symbol}>{item.symbol}</Text>
+              <View style={styles.cardHeader}>
+                <Text style={styles.symbol}>{item.symbol}</Text>
+                {favoriteIds.includes(item.id) && <Text style={styles.favorite}>★</Text>}
+              </View>
 
               <View style={styles.tags}>
                 <View style={styles.tag}>
@@ -190,5 +201,15 @@ const styles = StyleSheet.create({
     width: 60,
     height: 40,
     marginBottom: 16,
+  },
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  favorite: {
+    fontSize: 14,
+    color: '#facc15', // 高级金色
   },
 });

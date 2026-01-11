@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from 'react';
-import { FlatList, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, StyleSheet, View, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { allFormulas } from '@/data/index';
 import { useFocusEffect } from '@react-navigation/native';
 import { getFavorites } from '@/store/favorites';
+import Constants from 'expo-constants';
+import { ImageBackground } from 'react-native/types_generated/index';
 
 export default function ProfileScreen({ navigation }: any) {
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
@@ -15,10 +17,31 @@ export default function ProfileScreen({ navigation }: any) {
   );
 
   const favoriteFormulas = allFormulas.filter((f) => favoriteIds.includes(f.id));
-
+  const version = Constants.expoConfig?.version ?? 'unknown';
+  const build = Constants.expoConfig?.ios?.buildNumber ?? '1';
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.header}>
+        <View
+          style={{
+            alignItems: 'center',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            paddingBottom: 16,
+          }}>
+          <Image
+            source={require('@assets/download.png')}
+            style={styles.logo}
+            resizeMode="contain"
+          />
+          <View>
+            <Text>Formula Life</Text>
+            <Text style={{ color: '#888', fontSize: 12 }}>
+              Version {version} ({build})
+            </Text>
+          </View>
+        </View>
+
         <Text style={styles.title}>我的收藏</Text>
         <Text style={styles.subtitle}>{favoriteFormulas.length} 个公式</Text>
       </View>
@@ -131,5 +154,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#94a3b8',
     textTransform: 'capitalize',
+  },
+
+  empty: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  emptyText: { color: '#94a3b8' },
+  logo: {
+    width: 40,
+    height: 40,
   },
 });

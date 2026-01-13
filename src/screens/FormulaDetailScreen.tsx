@@ -1,12 +1,15 @@
 import ScreenHeader from '@/components/ScreenHeader';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formula } from '@/types/formula';
 import { toggleFavorite, isFavorite } from '@/store/favorites';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useFocusEffect } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type Props = {
+  navigation: NativeStackNavigationProp<any>;
   route: {
     params: {
       formula: Formula;
@@ -15,10 +18,19 @@ type Props = {
   };
 };
 
-export function FormulaDetailScreen({ route }: Props) {
+export function FormulaDetailScreen({ navigation, route }: Props) {
   const { formula, themeColor = '#64748b' } = route.params;
 
   const [fav, setFav] = useState(false);
+  useLayoutEffect(() => {
+    navigation.getParent()?.setOptions({
+      tabBarStyle: { display: 'none' },
+    });
+    return () =>
+      navigation.getParent()?.setOptions({
+        tabBarStyle: { display: 'flex' }, // Or undefined to revert to default
+      });
+  }, [navigation]);
 
   useEffect(() => {
     isFavorite(formula.id).then(setFav);

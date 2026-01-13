@@ -7,6 +7,7 @@ import { FormulaDomainScreen } from '@/screens/FormulaDomainScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ProfileScreen from '@/screens/ProfileScreen';
 import ProfileStack from './ProfileStack';
+import { RouteProp, ParamListBase, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +18,7 @@ const tabColors: Record<string, string> = {
 
 export default function MainTabs() {
   const mainColor = '#334155'; // '#0f766e'; //'#4c1d95';
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -45,11 +47,29 @@ export default function MainTabs() {
       <Tab.Screen
         name="Home"
         component={HomeStack}
-        options={{
-          tabBarLabel: '首页',
-          tabBarIcon: ({ color, size }) => <FontAwesome5 name="home" color={color} size={size} />,
+        options={({ route }) => {
+          const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeMain';
+          const hideTab = routeName !== 'HomeMain';
+          return {
+            tabBarLabel: '首页',
+            tabBarIcon: ({ color, size }) => <FontAwesome5 name="home" color={color} size={size} />,
+            tabBarStyle: hideTab ? { display: 'none' } : undefined,
+          };
         }}
       />
+      {/* <Tab.Screen
+        name="Home"
+        component={HomeStack}
+        options={({ route }) => {
+          const routeName = getFocusedRouteNameFromRoute(route) ?? 'HomeMain';
+          const hideTab = routeName !== 'HomeMain';
+          return {
+            tabBarLabel: '首页',
+            tabBarIcon: ({ color, size }) => <FontAwesome5 name="home" color={color} size={size} />,
+            tabBarStyle: hideTab ? { display: 'none' } : undefined,
+          };
+        }}
+      /> */}
       <Tab.Screen
         name="Profile"
         component={ProfileStack}

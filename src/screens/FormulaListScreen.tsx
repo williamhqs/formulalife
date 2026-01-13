@@ -11,7 +11,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { allFormulas, getFormulasByDomain } from '@/data/index';
 import { Domain, Formula } from '@/types/formula';
-import { green } from 'react-native-reanimated/lib/typescript/Colors';
 import { getFavorites } from '@/store/favorites';
 import { useFocusEffect } from '@react-navigation/native';
 

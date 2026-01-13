@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formula } from '@/types/formula';
 import { toggleFavorite, isFavorite } from '@/store/favorites';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type Props = {
@@ -77,7 +76,6 @@ export function FormulaDetailScreen({ navigation, route }: Props) {
       />
 
       <ScrollView contentContainerStyle={styles.container}>
-        {/* ===== 主卡片 ===== */}
         <View style={styles.card}>
           {/* 左侧色条 */}
           <View style={[styles.accent, { backgroundColor: themeColor }]} />
@@ -143,14 +141,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
-
+    overflow: 'hidden',
     elevation: 3,
     position: 'relative', // 为绝对定位accent
   },
 
   accent: {
     width: 4,
-    borderRadius: 2,
+    borderRadius: 4,
     position: 'absolute',
     top: 0,
     bottom: 0,

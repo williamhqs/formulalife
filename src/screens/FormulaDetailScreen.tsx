@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Formula } from '@/types/formula';
 import { toggleFavorite, isFavorite } from '@/store/favorites';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type Props = {
@@ -19,18 +19,37 @@ type Props = {
 };
 
 export function FormulaDetailScreen({ navigation, route }: Props) {
+  useLayoutEffect(() => {
+    const parent = navigation.getParent();
+    if (!parent) return;
+    parent.setOptions({
+      tabBarStyle: {
+        position: 'absolute',
+        display: 'none',
+        opacity: 0,
+        transform: [{ translateY: 100 }],
+        pointerEvents: 'none',
+      },
+    });
+
+    return () => {
+      setTimeout(() => {
+        parent.setOptions({
+          tabBarStyle: {
+            position: 'absolute',
+            display: 'flex',
+            opacity: 1,
+            transform: [{ translateY: 0 }],
+            pointerEvents: 'auto',
+          },
+        });
+      }, 300);
+    };
+  }, [navigation]);
+
   const { formula, themeColor = '#64748b' } = route.params;
 
   const [fav, setFav] = useState(false);
-  useLayoutEffect(() => {
-    navigation.getParent()?.setOptions({
-      tabBarStyle: { display: 'none' },
-    });
-    return () =>
-      navigation.getParent()?.setOptions({
-        tabBarStyle: { display: 'flex' }, // Or undefined to revert to default
-      });
-  }, [navigation]);
 
   useEffect(() => {
     isFavorite(formula.id).then(setFav);

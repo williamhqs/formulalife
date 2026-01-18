@@ -40,7 +40,7 @@ export type Formula = {
   id: string;
   name: string;
   symbol: string;
-
+  latex: string;
   domain: Domain;
   category: string;
 

@@ -13,6 +13,7 @@ import { allFormulas, getFormulasByDomain } from '@/data/index';
 import { Domain, Formula } from '@/types/formula';
 import { getFavorites } from '@/store/favorites';
 import { useFocusEffect } from '@react-navigation/native';
+import FormulaView from '@/components/FormulaView';
 
 const domains: { id: DomainFilter; name: string; color: string }[] = [
   { id: 'all', name: '全部', color: '#334155' },
@@ -86,7 +87,7 @@ export function FormulaListScreen({ navigation }: any) {
             <View style={styles.content}>
               <Text style={styles.name}>{item.name}</Text>
               <View style={styles.cardHeader}>
-                <Text style={styles.symbol}>{item.symbol}</Text>
+                <FormulaView latex={item.latex} fontSize={80} color="#111827" displayMode={false} />
                 {favoriteIds.includes(item.id) && <Text style={styles.favorite}>★</Text>}
               </View>
 

@@ -1,14 +1,11 @@
 import { Formula } from '@/types/formula';
 
 export const physicsFormulas: Formula[] = [
-  /* =========================
-     基础运动（小学）
-  ========================= */
-
   {
     id: 'speed',
     name: '速度',
     symbol: 'v = s / t',
+    latex: 'v = \\frac{s}{t}',
     domain: 'physics',
     category: 'kinematics',
     level: 1,
@@ -22,6 +19,7 @@ export const physicsFormulas: Formula[] = [
     id: 'distance',
     name: '路程',
     symbol: 's = v × t',
+    latex: 's = v \\cdot t',
     domain: 'physics',
     category: 'kinematics',
     level: 1,
@@ -35,6 +33,7 @@ export const physicsFormulas: Formula[] = [
     id: 'time',
     name: '时间',
     symbol: 't = s / v',
+    latex: 't = \\frac{s}{v}',
     domain: 'physics',
     category: 'kinematics',
     level: 1,
@@ -48,6 +47,7 @@ export const physicsFormulas: Formula[] = [
     id: 'density',
     name: '密度',
     symbol: 'ρ = m / V',
+    latex: '\\rho = \\frac{m}{V}',
     domain: 'physics',
     category: 'matter',
     level: 2,
@@ -57,14 +57,11 @@ export const physicsFormulas: Formula[] = [
     dependsOn: [],
   },
 
-  /* =========================
-     力学基础（初中）
-  ========================= */
-
   {
     id: 'acceleration',
     name: '加速度',
     symbol: 'a = Δv / t',
+    latex: 'a = \\frac{\\Delta v}{t}',
     domain: 'physics',
     category: 'kinematics',
     level: 2,
@@ -78,6 +75,7 @@ export const physicsFormulas: Formula[] = [
     id: 'newton_second_law',
     name: '牛顿第二定律',
     symbol: 'F = ma',
+    latex: 'F = m a',
     domain: 'physics',
     category: 'dynamics',
     level: 3,
@@ -91,6 +89,7 @@ export const physicsFormulas: Formula[] = [
     id: 'pressure',
     name: '压强',
     symbol: 'p = F / S',
+    latex: 'p = \\frac{F}{S}',
     domain: 'physics',
     category: 'mechanics',
     level: 2,
@@ -104,6 +103,7 @@ export const physicsFormulas: Formula[] = [
     id: 'work',
     name: '功',
     symbol: 'W = F × s',
+    latex: 'W = F \\cdot s',
     domain: 'physics',
     category: 'energy',
     level: 2,
@@ -117,6 +117,7 @@ export const physicsFormulas: Formula[] = [
     id: 'power',
     name: '功率',
     symbol: 'P = W / t',
+    latex: 'P = \\frac{W}{t}',
     domain: 'physics',
     category: 'energy',
     level: 2,
@@ -130,23 +131,21 @@ export const physicsFormulas: Formula[] = [
     id: 'ohms_law',
     name: '欧姆定律',
     symbol: 'U = IR',
+    latex: 'U = I R',
     domain: 'physics',
     category: 'electricity',
     level: 3,
     description: '电压、电流、电阻之间的关系。',
-    examples: ['I=2A, R=5Ω → U=10V'],
+    examples: ['I=2A, R=5\\Omega → U=10V'],
     visual: 'circuit',
     dependsOn: [],
   },
-
-  /* =========================
-     高中核心物理
-  ========================= */
 
   {
     id: 'uniform_acceleration_distance',
     name: '匀加速位移公式',
     symbol: 's = vt + ½at²',
+    latex: 's = v t + \\frac{1}{2} a t^2',
     domain: 'physics',
     category: 'kinematics',
     level: 3,
@@ -160,6 +159,7 @@ export const physicsFormulas: Formula[] = [
     id: 'kinetic_energy',
     name: '动能',
     symbol: 'Ek = ½mv²',
+    latex: 'E_k = \\frac{1}{2} m v^2',
     domain: 'physics',
     category: 'energy',
     level: 3,
@@ -173,6 +173,7 @@ export const physicsFormulas: Formula[] = [
     id: 'potential_energy',
     name: '重力势能',
     symbol: 'Ep = mgh',
+    latex: 'E_p = m g h',
     domain: 'physics',
     category: 'energy',
     level: 3,
@@ -186,11 +187,12 @@ export const physicsFormulas: Formula[] = [
     id: 'momentum',
     name: '动量',
     symbol: 'p = mv',
+    latex: 'p = m v',
     domain: 'physics',
     category: 'dynamics',
     level: 3,
     description: '描述物体运动状态的物理量。',
-    examples: ['m=2kg, v=4 → p=8kg·m/s'],
+    examples: ['m=2kg, v=4 → p=8kg\\cdot m/s'],
     visual: 'motion',
     dependsOn: ['speed'],
   },
@@ -199,6 +201,7 @@ export const physicsFormulas: Formula[] = [
     id: 'ideal_gas_law1',
     name: '理想气体状态方程',
     symbol: 'pV = nRT',
+    latex: 'p V = n R T',
     domain: 'physics',
     category: 'thermodynamics',
     level: 4,
@@ -212,6 +215,7 @@ export const physicsFormulas: Formula[] = [
     id: 'coulomb_law',
     name: '库仑定律',
     symbol: 'F = k·q₁q₂ / r²',
+    latex: 'F = k \\frac{q_1 q_2}{r^2}',
     domain: 'physics',
     category: 'electricity',
     level: 4,
@@ -225,6 +229,7 @@ export const physicsFormulas: Formula[] = [
     id: 'wave_speed',
     name: '波速公式',
     symbol: 'v = λf',
+    latex: 'v = \\lambda f',
     domain: 'physics',
     category: 'waves',
     level: 3,

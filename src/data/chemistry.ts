@@ -1,11 +1,11 @@
 import { Formula } from '@/types/formula';
 
 export const chemistryFormulas: Formula[] = [
-  // 基础概念
   {
     id: 'molar_mass',
     name: '摩尔质量',
     symbol: 'M = m / n',
+    latex: 'M = \\frac{m}{n}',
     domain: 'chemistry',
     category: 'stoichiometry',
     level: 1,
@@ -14,10 +14,12 @@ export const chemistryFormulas: Formula[] = [
     visual: 'table',
     dependsOn: [],
   },
+
   {
     id: 'amount_of_substance',
     name: '物质的量',
     symbol: 'n = m / M',
+    latex: 'n = \\frac{m}{M}',
     domain: 'chemistry',
     category: 'stoichiometry',
     level: 1,
@@ -26,10 +28,12 @@ export const chemistryFormulas: Formula[] = [
     visual: 'table',
     dependsOn: ['molar_mass'],
   },
+
   {
     id: 'avogadro_law',
     name: '阿伏伽德罗定律',
     symbol: 'V / n = k',
+    latex: '\\frac{V}{n} = k',
     domain: 'chemistry',
     category: 'gas_law',
     level: 2,
@@ -38,22 +42,26 @@ export const chemistryFormulas: Formula[] = [
     visual: 'chart',
     dependsOn: [],
   },
+
   {
     id: 'ideal_gas_law',
     name: '理想气体状态方程',
     symbol: 'PV = nRT',
+    latex: 'P V = n R T',
     domain: 'chemistry',
     category: 'gas_law',
     level: 2,
     description: '理想气体的压强、体积、物质的量和温度之间的关系。',
-    examples: ['P = 1 atm, V = 22.4 L, n = 1 mol, T = 273K → R = 0.0821 L·atm/mol·K'],
+    examples: ['P = 1 atm, V = 22.4 L, n = 1 mol, T = 273 K → R = 0.0821 L·atm/mol·K'],
     visual: 'equation',
     dependsOn: ['avogadro_law', 'amount_of_substance'],
   },
+
   {
     id: 'concentration',
     name: '浓度',
     symbol: 'C = n / V',
+    latex: 'C = \\frac{n}{V}',
     domain: 'chemistry',
     category: 'solution',
     level: 2,
@@ -62,10 +70,12 @@ export const chemistryFormulas: Formula[] = [
     visual: 'table',
     dependsOn: ['amount_of_substance'],
   },
+
   {
     id: 'mass_percent',
     name: '质量分数',
     symbol: 'w = m_solute / m_solution × 100%',
+    latex: 'w = \\frac{m_{solute}}{m_{solution}} \\times 100\\%',
     domain: 'chemistry',
     category: 'solution',
     level: 2,
@@ -74,10 +84,12 @@ export const chemistryFormulas: Formula[] = [
     visual: 'table',
     dependsOn: ['amount_of_substance'],
   },
+
   {
     id: 'reaction_heat',
     name: '反应热',
     symbol: 'Q = m·c·ΔT',
+    latex: 'Q = m \\cdot c \\cdot \\Delta T',
     domain: 'chemistry',
     category: 'thermochemistry',
     level: 3,
@@ -86,58 +98,68 @@ export const chemistryFormulas: Formula[] = [
     visual: 'calculation',
     dependsOn: [],
   },
+
   {
     id: 'enthalpy_change',
     name: '焓变',
     symbol: 'ΔH = H_products - H_reactants',
+    latex: '\\Delta H = H_{products} - H_{reactants}',
     domain: 'chemistry',
     category: 'thermochemistry',
     level: 3,
     description: '化学反应过程中焓的变化。',
-    examples: ['燃烧反应: ΔH = H(CO2) + H(H2O) - H(CH4) - H(2O)'],
+    examples: ['ΔH = H(CO_2) + H(H_2O) - H(CH_4) - H(O_2)'],
     visual: 'diagram',
     dependsOn: ['reaction_heat'],
   },
+
   {
     id: 'nernst_equation',
     name: '能斯特方程',
     symbol: 'E = E° - (RT/nF)lnQ',
+    latex: 'E = E^{\\circ} - \\frac{R T}{n F} \\ln Q',
     domain: 'chemistry',
     category: 'electrochemistry',
     level: 3,
     description: '电池电极电势计算公式。',
-    examples: ['E = 1.10V - (0.059/n)·log([products]/[reactants])'],
+    examples: ['E = 1.10V - (0.059/n) \\cdot \\log Q'],
     visual: 'equation',
     dependsOn: [],
   },
+
   {
     id: 'rate_law',
     name: '反应速率方程',
     symbol: 'r = k[A]^m[B]^n',
+    latex: 'r = k [A]^m [B]^n',
     domain: 'chemistry',
     category: 'kinetics',
     level: 3,
     description: '化学反应速率与反应物浓度之间的关系。',
-    examples: ['r = k[H2]^2[O2]'],
+    examples: ['r = k[H_2]^2[O_2]'],
     visual: 'chart',
     dependsOn: ['concentration'],
   },
+
   {
     id: 'equilibrium_constant',
     name: '化学平衡常数',
     symbol: 'K = [products]/[reactants]',
+    latex: 'K = \\frac{[products]}{[reactants]}',
     domain: 'chemistry',
     category: 'equilibrium',
     level: 3,
     description: '化学反应在平衡状态下产物与反应物浓度的比值。',
-    examples: ['K = [NH3]^2 / ([N2][H2]^3)'],
+    examples: ['K = \\frac{[NH_3]^2}{[N_2][H_2]^3}'],
     visual: 'diagram',
     dependsOn: ['concentration'],
   },
+
   {
     id: 'le_chatelier',
     name: '勒沙特列原理',
     symbol: '-',
+    latex: '\\text{Le\\ Chatelier\\ Principle}',
     domain: 'chemistry',
     category: 'equilibrium',
     level: 3,

@@ -84,7 +84,13 @@ export function FormulaDetailScreen({ navigation, route }: Props) {
 
           {/* 公式名称 & 符号 */}
           <Text style={styles.name}>{formula.name}</Text>
-          <FormulaView latex={formula.latex} fontSize={80} color="#007aff" displayMode={false} />
+          <FormulaView
+            latex={formula.latex}
+            fontSize={80}
+            color="#007aff"
+            displayMode={false}
+            enableSave={true}
+          />
           <FormulaImageView latex={formula.latex} />
           {/* level + category */}
           <View style={styles.meta}>

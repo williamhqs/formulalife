@@ -87,7 +87,13 @@ export function FormulaListScreen({ navigation }: any) {
             <View style={styles.content}>
               <Text style={styles.name}>{item.name}</Text>
               <View style={styles.cardHeader}>
-                <FormulaView latex={item.latex} fontSize={80} color="#111827" displayMode={false} />
+                <FormulaView
+                  latex={item.latex}
+                  fontSize={80}
+                  color="#111827"
+                  displayMode={false}
+                  enableSave={false}
+                />
                 {favoriteIds.includes(item.id) && <Text style={styles.favorite}>★</Text>}
               </View>
 

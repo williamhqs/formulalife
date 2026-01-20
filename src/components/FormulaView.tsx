@@ -74,7 +74,6 @@ export default function FormulaView({
         return;
       }
 
-      // Save to gallery
       await MediaLibrary.saveToLibraryAsync(fileUri);
 
       Alert.alert('保存成功', '公式图片已保存到相册');
@@ -87,8 +86,14 @@ export default function FormulaView({
   };
 
   return (
-    <View style={containerStyle}>
-      <ViewShot ref={viewShotRef} options={{ format: 'png', quality: 1, result: 'tmpfile' }}>
+    <View style={[{ width: '100%' }, containerStyle]}>
+      <ViewShot
+        ref={viewShotRef}
+        options={{
+          format: 'png',
+          quality: 1,
+          result: 'tmpfile',
+        }}>
         <View style={[styles.formulaBox, { height: containerHeight }]}>
           {!ready && <SkeletonBar height={fontSize * 0.9} width="100%" />}
 
@@ -103,6 +108,7 @@ export default function FormulaView({
         </View>
       </ViewShot>
 
+      {/* Save button */}
       {enableSave && (
         <TouchableOpacity
           onPress={onSaveImage}

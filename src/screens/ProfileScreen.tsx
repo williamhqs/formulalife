@@ -6,6 +6,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getFavorites } from '@/store/favorites';
 import Constants from 'expo-constants';
 import { ImageBackground } from 'react-native/types_generated/index';
+import FormulaView from '@/components/FormulaView';
 
 export default function ProfileScreen({ navigation }: any) {
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
@@ -60,13 +61,13 @@ export default function ProfileScreen({ navigation }: any) {
               style={styles.card}
               onPress={() => navigation.navigate('FormulaDetailScreen', { formula: item })}>
               <View style={styles.topRow}>
-                <Text style={styles.symbol}>{item.symbol}</Text>
+                {/* <Text style={styles.symbol}>{item.symbol}</Text> */}
 
                 <View style={styles.levelBadge}>
                   <Text style={styles.levelText}>Lv {item.level}</Text>
                 </View>
               </View>
-
+              <FormulaView latex={item.latex} fontSize={80} color="#111827" displayMode={false} />
               <Text style={styles.name}>{item.name}</Text>
 
               <Text style={styles.category}>{item.category}</Text>

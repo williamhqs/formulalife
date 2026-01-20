@@ -7,6 +7,7 @@ import { toggleFavorite, isFavorite } from '@/store/favorites';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import FormulaView from '@/components/FormulaView';
+import { FormulaImageView } from '@/components/FormulaImageView';
 
 type Props = {
   navigation: NativeStackNavigationProp<any>;
@@ -60,23 +61,6 @@ export function FormulaDetailScreen({ navigation, route }: Props) {
     setFav(list.includes(formula.id));
   };
 
-  const [expr, setExpr] = useState('\\frac{a+b}{c}');
-
-  // 自定义内联样式，通过 CSS 控制字体大小
-  const inlineStyle = `
-    html, body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .katex {
-      font-size: 80px;
-      color: #007aff;
-    }
-  `;
-
   return (
     <SafeAreaView style={styles.safe}>
       <ScreenHeader
@@ -101,6 +85,7 @@ export function FormulaDetailScreen({ navigation, route }: Props) {
           {/* 公式名称 & 符号 */}
           <Text style={styles.name}>{formula.name}</Text>
           <FormulaView latex={formula.latex} fontSize={80} color="#007aff" displayMode={false} />
+          <FormulaImageView latex={formula.latex} />
           {/* level + category */}
           <View style={styles.meta}>
             <Text style={styles.metaText}>Lv {formula.level}</Text>

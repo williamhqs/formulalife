@@ -3,4 +3,5 @@ export type RootStackParamList = {
   ModuleScreen: { module: any };
   LessonScreen: { lesson: any };
   FormulaDetailScreen: { formula: any };
+  FavoritesScreen: undefined;
 };

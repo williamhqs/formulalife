@@ -2,6 +2,7 @@ import { FormulaDetailScreen } from '@/screens/FormulaDetailScreen';
 import ProfileScreen from '@/screens/ProfileScreen';
 import { RootStackParamList } from '@/navigation/types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import FavoritesScreen from '@/screens/FavoritesScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,6 +15,7 @@ export default function ProfileStack() {
         options={{ title: '首页', headerShown: false }}
       />
       <Stack.Screen name="FormulaDetailScreen" component={FormulaDetailScreen} />
+      <Stack.Screen name="FavoritesScreen" component={FavoritesScreen} />
     </Stack.Navigator>
   );
 }
